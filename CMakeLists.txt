@@ -11,7 +11,8 @@ OPTION(BUILD_LUA "build Lua binding" ON)
 
 CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/uci_config.h.in ${CMAKE_SOURCE_DIR}/uci_config.h )
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ../)
+LINK_DIRECTORIES(../lib)
 
 SET(LIB_SOURCES libuci.c file.c util.c delta.c parse.c blob.c)
 
@@ -25,7 +26,7 @@ TARGET_LINK_LIBRARIES(cli uci)
 
 ADD_LIBRARY(ucimap STATIC ucimap.c)
 
-ADD_SUBDIRECTORY(lua)
+#ADD_SUBDIRECTORY(lua)
 
 INSTALL(FILES uci.h uci_config.h uci_blob.h ucimap.h
 	DESTINATION include
